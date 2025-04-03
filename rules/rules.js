@@ -64,7 +64,7 @@ function getRandomScribleWordObject() {
   return words[Math.floor(Math.random() * words.length + 1)];
 }
 
-const randomWordObject = getRandomScribleWordObject();
+var randomWordObject = getRandomScribleWordObject();
 
 var rules = [
   new Rule(
