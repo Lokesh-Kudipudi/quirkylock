@@ -9,7 +9,7 @@ import Rule from "./Rule";
 import RuleMorse from "./RuleMorse/RuleMorse";
 import RuleTimeEmoji from "./RuleTimeEmoji/RuleTimeEmoji";
 
-function getRandomWord() {
+function getRandomScribleWordObject() {
   const words = [
     {
       word: "shreeraj",
@@ -64,7 +64,7 @@ function getRandomWord() {
   return words[Math.floor(Math.random() * words.length + 1)];
 }
 
-const randomWordObject = getRandomWord();
+const randomWordObject = getRandomScribleWordObject();
 
 var rules = [
   new Rule(
@@ -79,6 +79,7 @@ var rules = [
     "Your password must include a special character.",
     (t) => /\W/.test(t)
   ),
+
   new Rule("Your password must include a number.", (t) =>
     /\d/.test(t)
   ),
@@ -113,20 +114,19 @@ var rules = [
     (t) =>
       new RegExp(`\\b${randomWordObject.word}\\b`, "i").test(t)
   ),
+  new RuleEarthquake(),
   new Rule(
     "Lbhe cnffjbeq zhfg pbagnva gur anzr bs gur rirag va EBG13 - ROT13",
     (t) => {
       /arhenyBqlffrl/i.test(t);
     }
   ),
-
   new Rule(
     "rosnops doof eht fo eman eht niatnoc tsum drowssap ehT",
     (t) => {
       return /tatasampann/i.test(t);
     }
   ),
-
   new Rule(
     "The sum of digits should be equal to the number of vowels in the password",
     (t) => {
@@ -141,6 +141,22 @@ var rules = [
         }
       }
       return sum == vowels;
+    }
+  ),
+  new RuleLocation(),
+  new Rule(
+    "Your password must have as many vowels as consonants.",
+    (t) =>
+      (t.match(/[aeiou]/gi) || []).length ===
+      (t.match(/[bcdfghjklmnpqrstvwxys]/gi) || []).length
+  ),
+  new RuleSlidingPuzzle(),
+  new Rule(
+    "Your password must include the length of your password.",
+    (t) => {
+      let l = t.length;
+      let r = new RegExp(`${l}`);
+      return r.test(t);
     }
   ),
 
@@ -179,24 +195,7 @@ var rules = [
   // ),
 
   // // new RuleWordle(),
-  // new RuleEarthquake(),
-  // new RuleLocation(),
   // new RuleRiddle(),
-  // new Rule(
-  //   "Your password must have as many vowels as consonants.",
-  //   (t) =>
-  //     (t.match(/[aeiou]/gi) || []).length ===
-  //     (t.match(/[bcdfghjklmnpqrstvwxys]/gi) || []).length
-  // ),
-  // new RuleSlidingPuzzle(),
-  // new Rule(
-  //   "Your password must include the length of your password.",
-  //   (t) => {
-  //     let l = t.length;
-  //     let r = new RegExp(`${l}`);
-  //     return r.test(t);
-  //   }
-  // ),
 ];
 
 function sort_rules(a, b) {
