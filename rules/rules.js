@@ -112,7 +112,7 @@ var rules = [
   new Rule(
     `Unscramble the word: '${randomWordObject.scramble}' into a name of event organizer`,
     (t) =>
-      new RegExp(`\\b${randomWordObject.word}\\b`, "i").test(t)
+      new RegExp(`\\${randomWordObject.word}\\`, "i").test(t)
   ),
   new RuleEarthquake(),
   new Rule(
