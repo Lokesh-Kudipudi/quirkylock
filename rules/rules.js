@@ -117,9 +117,7 @@ var rules = [
   new RuleEarthquake(),
   new Rule(
     "Lbhe cnffjbeq zhfg pbagnva gur anzr bs gur rirag va EBG13 - ROT13",
-    (t) => {
-      /arhenyBqlffrl/i.test(t);
-    }
+    (t) => /arhenyBqlffrl/i.test(t)
   ),
   new Rule(
     "rosnops doof eht fo eman eht niatnoc tsum drowssap ehT",
