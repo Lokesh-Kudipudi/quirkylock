@@ -84,11 +84,11 @@ var rules = [
   ),
   new Rule(
     "It should include the name of the event conducting club",
-    (t) => /epoch/.test(t)
+    (t) => /epoch/i.test(t)
   ),
   new Rule(
     "It should include the name of the common DL framework",
-    (t) => /tensorflow|pytorch/.test(t)
+    (t) => /tensorflow|pytorch/i.test(t)
   ),
   new Rule(
     "It should include the name of Highest Subscribed Youtube Channel related to ML",
@@ -96,15 +96,15 @@ var rules = [
   ),
   new Rule(
     "Your password must contain a word that is a common activation function in neural networks",
-    (t) => /relu|sigmoid|tanh|softmax/.test(t)
+    (t) => /relu|sigmoid|tanh|softmax/i.test(t)
   ),
   new Rule(
     "Your password must contain a metric used to measure GPU performance.",
-    (t) => /flops|tensorflops/.test(t)
+    (t) => /flops|tensorflops/i.test(t)
   ),
   new Rule(
     "Your password must include the abbreviation of a famous image generative model.",
-    (t) => /gan|vae|diffusion/.test(t)
+    (t) => /gan|vae|diffusion/i.test(t)
   ),
   new RuleMorse(),
   new RuleTimeEmoji(),
@@ -113,26 +113,38 @@ var rules = [
     (t) =>
       new RegExp(`\\b${randomWordObject.word}\\b`, "i").test(t)
   ),
+  new Rule(
+    "Lbhe cnffjbeq zhfg pbagnva gur anzr bs gur rirag va EBG13 - ROT13",
+    (t) => {
+      /arhenyBqlffrl/i.test(t);
+    }
+  ),
+
+  new Rule(
+    "rosnops doof eht fo eman eht niatnoc tsum drowssap ehT",
+    (t) => {
+      return /tatasampann/i.test(t);
+    }
+  ),
+
+  new Rule(
+    "The sum of digits should be equal to the number of vowels in the password",
+    (t) => {
+      let sum = 0;
+      let vowels = 0;
+      for (let i = 0; i < t.length; i++) {
+        if (!isNaN(t[i])) {
+          sum += parseInt(t[i]);
+        }
+        if (/[aeiou]|[AEIOU]/.test(t[i])) {
+          vowels++;
+        }
+      }
+      return sum == vowels;
+    }
+  ),
 
   // new RuleQR(),
-  // new Rule(
-  //   "The sum of digits should be equal to the number of vowels in the password",
-  //   (t) => {
-  //     let sum = 0;
-  //     let vowels = 0;
-  //     for (let i = 0; i < t.length; i++) {
-  //       if (!isNaN(t[i])) {
-  //         sum += parseInt(t[i]);
-  //       }
-  //       if (/[aeiou]|[AEIOU]/.test(t[i])) {
-  //         vowels++;
-  //       }
-  //     }
-  //     console.log(sum, vowels);
-  //     return sum == vowels;
-  //   }
-  // ),
-
   // new Rule(
   //   "Your password must contain all the english vowels.",
   //   (t) =>
