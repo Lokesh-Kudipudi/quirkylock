@@ -111,8 +111,7 @@ var rules = [
   new RuleTimeEmoji(),
   new Rule(
     `Unscramble the word: '${randomWordObject.scramble}' into a name of event organizer`,
-    (t) =>
-      new RegExp(`\\${randomWordObject.word}\\`, "i").test(t)
+    (t) => new RegExp(`${randomWordObject.word}`, "i").test(t)
   ),
   new RuleEarthquake(),
   new Rule(
@@ -123,22 +122,6 @@ var rules = [
     "rosnops doof eht fo eman eht niatnoc tsum drowssap ehT",
     (t) => {
       return /tatasampann/i.test(t);
-    }
-  ),
-  new Rule(
-    "The sum of digits should be equal to the number of vowels in the password",
-    (t) => {
-      let sum = 0;
-      let vowels = 0;
-      for (let i = 0; i < t.length; i++) {
-        if (!isNaN(t[i])) {
-          sum += parseInt(t[i]);
-        }
-        if (/[aeiou]|[AEIOU]/.test(t[i])) {
-          vowels++;
-        }
-      }
-      return sum == vowels;
     }
   ),
   new RuleLocation(),
