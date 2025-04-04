@@ -59,6 +59,10 @@ function getRandomScribleWordObject() {
       word: "meghana",
       scramble: "gahname",
     },
+    {
+      word: "vitesh",
+      scramble: "tshive",
+    },
   ];
 
   return words[Math.floor(Math.random() * words.length + 1)];
@@ -123,6 +127,58 @@ var rules = [
     (t) => {
       return /tatasampann/i.test(t);
     }
+  ),
+  new Rule(
+    "Your password should include the name of the optimization algorithm that keeps 'momentum' in training.",
+    (t) => /adam|sgd/i.test(t)
+  ),
+  new Rule(
+    "Your password must mention the one loss function that makes your model cry.",
+    (t) => /crossentropy|mse/i.test(t)
+  ),
+  new Rule(
+    "Your password must contain the name of the one algorithm that sees in 'attention'.",
+    (t) => /transformer/i.test(t)
+  ),
+  new Rule(
+    "Your password must include the one word that describes an AI making up facts confidently.",
+    (t) => /hallucination/i.test(t)
+  ),
+  new Rule(
+    "Your password must mention the famous backpropagation algorithm that actually does all the work.",
+    (t) => /gradientdescent/i.test(t)
+  ),
+  new Rule(
+    "Your password must reference the name of the statistical method that makes naive assumptions but still works well.",
+    (t) => /naivebayes/i.test(t)
+  ),
+  new Rule(
+    "Your password must include the one term that explains why ML models sometimes fail miserably on new data.",
+    (t) => /overfitting/i.test(t)
+  ),
+  new Rule(
+    "Your password must contain the name of the most overused yet underappreciated dataset in ML.",
+    (t) => /mnist|imagenet|cifar/i.test(t)
+  ),
+  new Rule(
+    "Your password should reference the famous algorithm that finds the shortest path but never actually trains a model.",
+    (t) => /dijkstra/i.test(t)
+  ),
+  new Rule(
+    "Your password must mention the term used when models get lazy and just predict the majority class.",
+    (t) => /bias/i.test(t)
+  ),
+  new Rule(
+    "Your password must reference the function that converts logits into probabilities.",
+    (t) => /softmax/i.test(t)
+  ),
+  new Rule(
+    "Your password must include the one metric that makes your model look good but is sometimes misleading.",
+    (t) => /accuracy/i.test(t)
+  ),
+  new Rule(
+    "Your password must contain the term for when your model is trained but refuses to generalize.",
+    (t) => /underfitting/i.test(t)
   ),
   new RuleLocation(),
   new Rule(
